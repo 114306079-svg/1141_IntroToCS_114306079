@@ -111,7 +111,7 @@ body {
 
 .timeline-item .year {
     font-weight: bold;
-    color: #3498db;
+    color: black;
     min-width: 130px;
     font-size: 14px;
 }

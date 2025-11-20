@@ -56,6 +56,13 @@ body {
     line-height: 1.5;
     margin-bottom: 20px;
 }
+.about-section,
+.contact-section {
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
 
 .contact-section ul {
     list-style: none;

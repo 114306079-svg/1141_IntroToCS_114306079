@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+   
+</head>
+<body>
+
+<h1>114306079_HW7_1A2B</h1>
+
+<label>Enter 4 unique numbers</label>
+<input id="guess" type="text" >
+<button onclick="play()">Guess</button>
+<h3>Game Record:</h3>
+
+<div id="record"></div>
+
+<script>
+let answer = generateAnswer();
+let count = 0;
+
+
+function generateAnswer() {
+    let nums = [0,1,2,3,4,5,6,7,8,9]; 
+    let ans = "";
+    for (let i=0; i<4; i++) {
+        let idx = Math.floor(Math.random() * nums.length);//先隨機取0-1小數 再乘以陣列長度10後取整數
+        ans += nums[idx];
+        nums.splice(idx,1); //選到的就刪除
+    }
+    return ans;
+}
+
+
+function play() {
+    let input = document.getElementById("guess").value;  //上面text進來的value
+
+    if (!isValid(input)) {
+        alert("Invalid input! Must be 4 unique digits.");
+        return;
+    }
+
+    count++;
+    let result = checkAB(input, answer);
+
+    document.getElementById("record").innerHTML +=
+        "第" + count + "次: " + input + " → " + result + "<br>";
+
+    document.getElementById("guess").value = ""; //清空輸入框
+
+    if (input === answer) {
+        alert("Correct! Attempts: " + count);
+    }
+}
+
+
+function isValid(s) {  //s 只在 isValid 這個函式內有效
+    if (s.length !== 4) return false;
+    if (!/^\d{4}$/.test(s)) return false;
+    if (new Set(s).size !== 4)return false; //將input數字弄成一個數列 少於4就是false 因為有重複的
+}
+
+
+function checkAB(g, a) {
+    let A = 0, B = 0;
+    for (let i=0; i<4; i++) {
+        if (g[i] === a[i]) A++;
+        else if (a.includes(g[i])) B++;
+    }
+    return A + "A" + B + "B";
+}
+</script>
+
+</body>
+</html>

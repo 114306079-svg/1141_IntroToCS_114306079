@@ -57,7 +57,8 @@ function play() {
 function isValid(s) {  //s 只在 isValid 這個函式內有效
     if (s.length !== 4) return false;
     if (!/^\d{4}$/.test(s)) return false;
-    return new Set(s).size === 4;//將input數字弄成一個數列 少於4就是false 因為有重複的
+  if (new Set(s).size !== 4){return false;}//將input數字弄成一個數列 少於4就是false 因為有重複的
+    else{return true;} 
 }
 
 
